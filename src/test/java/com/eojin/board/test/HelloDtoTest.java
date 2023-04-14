@@ -1,7 +1,7 @@
 package com.eojin.board.test;
 
 
-import com.eojin.board.dto.HelloDto;
+import com.eojin.board.web.dto.HelloDto;
 import org.junit.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;

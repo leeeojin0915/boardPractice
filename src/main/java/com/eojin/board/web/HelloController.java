@@ -1,6 +1,6 @@
 package com.eojin.board.web;
 
-import com.eojin.board.dto.HelloDto;
+import com.eojin.board.web.dto.HelloDto;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;

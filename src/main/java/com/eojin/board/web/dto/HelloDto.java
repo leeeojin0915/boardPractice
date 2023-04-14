@@ -1,4 +1,4 @@
-package com.eojin.board.dto;
+package com.eojin.board.web.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
