@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application {
     public static void main(String[] args){
         SpringApplication.run(Application.class,args);
-        //SpringApplication.run로 인해 내장was를 싫행한다.
+        //SpringApplication.run로 인해 내장was를 실행한다.
         //내장was는 외부was를 두지않고 어플리케이션을 실행할 수 있어, 따로 톰켓 실행을 하지 않아도 된다.
 
     }
