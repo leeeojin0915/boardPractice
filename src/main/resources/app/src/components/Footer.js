@@ -1,7 +1,9 @@
+import '../css//Header.css'
+
 function Footer(){
     return(
-        <footer>
-            <div>바닥</div>
+        <footer className="footer">
+            <div>eojin@copyright</div>
         </footer>
     )
 }
