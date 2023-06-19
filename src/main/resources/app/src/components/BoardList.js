@@ -1,7 +1,24 @@
 import {Link} from "react-router-dom";
 import '../css/BoardList.css'
+import {useState} from "react";
+import axios from "axios";
 
 function BoardList() {
+    const [boardList, setBoardList] = useState([]); // 가져올 리스트
+
+    //get 방식으로 데이터 불러오기
+    const getBoardList = async () => {
+        await axios.get("http://localhost:3000/list")
+            .then((response)=>{
+                setBoardList(response.data.boardList);
+                console.log(response);
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+    }
+
+
     return(
         <>
             <table>
@@ -18,20 +35,6 @@ function BoardList() {
                     <td><Link to="/detail">게시판1</Link></td>
                     <td>Smith</td>
                     <td>50</td>
-                </tr>
-                <tr>
-                    <th><input type='checkbox'/></th>
-                    <td>1</td>
-                    <td><Link to="/detail">게시판2</Link></td>
-                    <td>Jackson</td>
-                    <td>94</td>
-                </tr>
-                <tr>
-                    <th><input type='checkbox'/></th>
-                    <td>1</td>
-                    <td>Adam</td>
-                    <td>Johnson</td>
-                    <td>67</td>
                 </tr>
             </table>
             <Link to=''>
