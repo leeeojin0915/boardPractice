@@ -20,6 +20,10 @@ public class BoardServiceImpl implements BoardService{
         board.setAuthor(board.getAuthor());
         board.setTitle(board.getTitle());
         board.setContent(board.getContent());
+    }
+
+    @Override
+    public void getBoardDetail(String id) {
 
     }
 }

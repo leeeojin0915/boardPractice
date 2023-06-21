@@ -5,7 +5,7 @@ import {BrowserRouter} from "react-router-dom";
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
 import Router from "./router/Router.js";
-
+//스프링부트와 리액트 연동 시 필요
 function App() {
   return (
     <div className="App">

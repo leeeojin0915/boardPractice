@@ -7,5 +7,6 @@ import java.util.List;
 public interface BoardService {
     List<BoardDto> boardList(BoardDto boardDto);
     void createBoard(BoardDto boardDto);
+    void getBoardDetail(String id);
 
 }
