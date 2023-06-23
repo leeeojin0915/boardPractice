@@ -8,18 +8,12 @@ function BoardList() {
 
     //get 방식으로 데이터 불러오기
     const getBoardList = async () => {
-        await axios.get("http://localhost:3000/list")
-            .then((response) => {
-                setBoardList(response.data);
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+        const response = await (await axios.get("http://localhost:3000/list")).data;
+        setBoardList(response.data);
     }
 
     useEffect(() => {
-        getBoardList();
+        getBoardList().then(r => console.log("list"));
     }, [])
 
 
@@ -41,9 +35,10 @@ function BoardList() {
                             <tr>
                                 <th><input type='checkbox'/></th>
                                 <td>{board.id}</td>
-                                <td><Link to="/detail">{board.title}</Link></td>
+                                <td><Link to="/detail/${board.id}">{board.title}</Link></td>
                                 <td>{board.author}</td>
-                                <td>{board.date}</td>
+                                {/*<td>{board.date}</td>*/}
+                                {/*<td>{board.content}</td>*/}
                             </tr>
                             )
                         }

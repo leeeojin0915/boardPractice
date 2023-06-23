@@ -33,7 +33,7 @@ function BoardWrite() {
             .then((res) => {
                 alert("등록완료")
                 console.log(res);
-                navigate('/');
+                navigate(`/list`);
             });
             // .catch((error) => {
             //     alert("에러");
@@ -50,7 +50,7 @@ function BoardWrite() {
         <>
             <div className="container">
                 <label>번호</label>
-                <input type="text" value={id} readOnly/>
+                <input type="text" name ="id" value={id} readOnly/>
                 <label>제목</label>
                 <input type="text" name = "title" value={title} onChange={changeBoard} placeholder="제목"/>
 

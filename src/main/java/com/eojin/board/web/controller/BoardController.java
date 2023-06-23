@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class BoardController {
 
@@ -18,8 +20,10 @@ public class BoardController {
 
     //게시판리스트
     @GetMapping("/list")
-    public void boardList(){
+    public List<BoardDto> boardList(){
+        return boardService.boardList();
     }
+
     @PostMapping("/write")
     public void createBoard(@RequestBody BoardDto boardDto){
         LOG.debug("boardDto : {}",boardDto);
