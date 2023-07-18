@@ -2,18 +2,19 @@ import {Link} from "react-router-dom";
 import '../css/BoardList.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {boardList} from "../Data";
 
 function BoardList() {
-    const [boardList, setBoardList] = useState([]); // 가져올 리스트
+    const [dataList, setDataList] = useState([]); // 가져올 리스트
 
     //get 방식으로 데이터 불러오기
-    const getBoardList = async () => {
-        const response = await (await axios.get("http://localhost:3000/list")).data;
-        setBoardList(response.data);
-    }
+    // const getBoardList = async () => {
+    //     const response = await (await axios.get("http://localhost:3000/write")).data;
+    //     setBoardList(response.data);
+    // }
 
     useEffect(() => {
-        getBoardList().then(r => console.log("list"));
+        setDataList(boardList);
     }, [])
 
 
@@ -29,20 +30,22 @@ function BoardList() {
                     <th>등록일자</th>
                 </tr>
                 </thead>
+
                 <tbody>
-                    {boardList.map((board) => {
-                        return(
-                            <tr>
-                                <th><input type='checkbox'/></th>
-                                <td>{board.id}</td>
-                                <td><Link to="/detail/${board.id}">{board.title}</Link></td>
-                                <td>{board.author}</td>
-                                {/*<td>{board.date}</td>*/}
-                                {/*<td>{board.content}</td>*/}
+                {boardList ?
+                    boardList.map((board) => {
+                        return (
+                            <tr key={board.id}>
+                                <th>
+                                    <input type={"checkbox"}/>
+                                </th>
+                                <th>{board.id}</th>
+                                <th><Link to={"/detail/" + board.id}>{board.title}></Link></th>
+                                <th>{board.author}</th>
+                                <th>{board.createDate}</th>
                             </tr>
-                            )
-                        }
-                    )}
+                        );
+                    }) : ""}
                 </tbody>
             </table>
             <Link to=''>

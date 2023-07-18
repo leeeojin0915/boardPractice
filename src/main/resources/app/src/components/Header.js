@@ -1,5 +1,5 @@
 import map from '../map.jpg'
- import '../css/Header.css'
+import '../css/Header.css'
 
 function Header() {
     return(
