@@ -21,7 +21,8 @@ public class BoardController {
     //게시판리스트
     @GetMapping("/list")
     public List<BoardDto> boardList(){
-        return boardService.boardList();
+        BoardDto boardDto = new BoardDto();
+        return boardService.boardList(boardDto);
     }
 
     @PostMapping("/write")

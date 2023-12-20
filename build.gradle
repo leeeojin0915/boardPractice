@@ -15,12 +15,27 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
     implementation 'org.springframework.boot:spring-boot-starter-web' //springboot
     implementation 'org.projectlombok:lombok' //lombok
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa' //jpa
     //springboot용 jpa 추상화 라이브러리 스프링부트 버전에 맞춰 jpa 관련 라이브러리들을 관리해준다.
     implementation 'com.h2database:h2'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // database
+    // https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc11
+    //implementation 'com.oracle.database.jdbc:ojdbc11:21.5.0.0'
+    // https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
+    implementation 'com.mysql:mysql-connector-j:8.0.33'
+    // https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1'
+
+    //implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+
+    // Hikari
+    implementation 'com.zaxxer:HikariCp:4.0.3'
+
+
     //인메모리형 데이터베이스 -> 테스트용도로 많이 사용한다. 개발/테스트용으로 사용예정
 
     testImplementation 'junit:junit:4.13.1'
