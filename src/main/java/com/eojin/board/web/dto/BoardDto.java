@@ -14,6 +14,6 @@ public class BoardDto {
     private String content;
     private String user_id;
     private String delete_yn;
-    private Date create_date;
+    private String create_date;
     private Date update_date;
 }

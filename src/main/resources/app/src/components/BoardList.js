@@ -2,19 +2,20 @@ import {Link} from "react-router-dom";
 import '../css/BoardList.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {boardList} from "../Data";
 
 function BoardList() {
-    const [dataList, setDataList] = useState([]); // 가져올 리스트
+    const [boardList, setBoardList] = useState([]); // 가져올 리스트
 
     //get 방식으로 데이터 불러오기
-    // const getBoardList = async () => {
-    //     const response = await (await axios.get("http://localhost:3000/write")).data;
-    //     setBoardList(response.data);
-    // }
+    const getBoardList = async () => {
+        const response = await axios.get("http://localhost:8080/list");
+        console.log(response);
+        const {data} = response;
+        console.log(data);
+    }
 
     useEffect(() => {
-        setDataList(boardList);
+        setBoardList(getBoardList);
     }, [])
 
 

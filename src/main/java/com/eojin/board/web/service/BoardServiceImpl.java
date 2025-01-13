@@ -5,10 +5,8 @@ import com.eojin.board.web.mapper.board.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -24,18 +22,19 @@ public class BoardServiceImpl implements BoardService{
 //        map.put("title", boardDto.getTitle());
 //        map.put("content", boardDto.getContent());
 //        map.put("user_id",boardDto.getUser_id());
-
+        System.out.println(boardDto.getBoard_id());
+        System.out.println(boardDto.getBoard_type());
+        System.out.println(boardDto.getTitle());
+        //return null;
         return boardMapper.selectBoardList(map);
     }
 
     @Override
-    public BoardDto createBoard(BoardDto boardDto) {
-        return boardDto;
+    public void createBoard(BoardDto boardDto) {
     }
 
     @Override
-    public BoardDto getBoardDetail(String id) {
+    public void getBoardDetail(String id) {
         BoardDto boardDto = new BoardDto();
-        return boardDto;
     }
 }
