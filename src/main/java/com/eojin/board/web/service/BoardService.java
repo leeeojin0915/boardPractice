@@ -5,8 +5,9 @@ import com.eojin.board.web.dto.BoardDto;
 import java.util.List;
 
 public interface BoardService {
-    List<BoardDto> boardList(BoardDto boardDto);
+    List<BoardDto> boardList();
     void createBoard(BoardDto boardDto);
-    void getBoardDetail(String id);
+    BoardDto getBoardDetail(String id);
+    void updateBoard(BoardDto boardDto);
 
 }

@@ -2,39 +2,36 @@ package com.eojin.board.web.service;
 
 import com.eojin.board.web.dto.BoardDto;
 import com.eojin.board.web.mapper.board.BoardMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Service
 public class BoardServiceImpl implements BoardService{
 
+    private final Logger LOG = LoggerFactory.getLogger(BoardServiceImpl.class);
+
     @Autowired
     BoardMapper boardMapper;
 
     @Override
-    public List<BoardDto> boardList(BoardDto boardDto) {
-        HashMap<String,Object> map = new HashMap<>();
-//        map.put("board_id",boardDto.getBoard_id());
-//        map.put("board_type",boardDto.getBoard_type());
-//        map.put("title", boardDto.getTitle());
-//        map.put("content", boardDto.getContent());
-//        map.put("user_id",boardDto.getUser_id());
-        System.out.println(boardDto.getBoard_id());
-        System.out.println(boardDto.getBoard_type());
-        System.out.println(boardDto.getTitle());
-        //return null;
-        return boardMapper.selectBoardList(map);
+    public List<BoardDto> boardList() {
+        return boardMapper.selectBoardList();
     }
-
     @Override
     public void createBoard(BoardDto boardDto) {
+        LOG.debug("boardDtd:{}",boardDto);
+        boardMapper.insertBoard(boardDto);
     }
-
     @Override
-    public void getBoardDetail(String id) {
-        BoardDto boardDto = new BoardDto();
+    public BoardDto getBoardDetail(String boardId) {
+        return boardMapper.selectBoardOne(boardId);
+    }
+    @Override
+    public void updateBoard(BoardDto boardDto) {
+        boardMapper.updateBoard(boardDto);
     }
 }

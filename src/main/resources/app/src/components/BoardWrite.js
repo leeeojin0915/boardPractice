@@ -1,6 +1,6 @@
 import '../css/BoardWrite.css';
 import {useRef, useState} from "react";
-import axios, {create} from "axios";
+import axios from "../config/config";
 import {useNavigate} from "react-router-dom";
 import moment from "moment/moment";
 
@@ -9,7 +9,9 @@ function BoardWrite() {
         title: '',
         author: '',
         content: '',
-        dataId: useRef(0).current,
+        boardType: 'NOTICE',
+        boardTypeName: '공지사항',
+        boardId: useRef(1).current,
         createDate: moment().format("YYYY-MM-DD")
     });
 
@@ -25,25 +27,25 @@ function BoardWrite() {
     };
 
     //Post 방식으로 등록
-    // const createBoard = async () => {
-    //     await axios.post("http://localhost:3000/list", board)
-    //         .then((res) => {
-    //             alert("등록완료")
-    //             console.log(res);
-    //             returnBack();
-    //             count();
-    //         })
-    //         .catch((error) => {
-    //             alert("에러"+error);
-    //             console.log(error);
-    //         })
-    // };
-    const sendData = (e) => {
+    const createBoard = async () => {
+        console.log(board);
+        try {
+            const res = await axios.post("/api/board/write", board);
+            board.boardId += 1;
+            returnBack();
+            console.log("res:::::::", res);
+        } catch (error) {
+            console.log("error:::::", error);
+
+        }
+
+    };
+    /*const sendData = (e) => {
         alert("success");
         console.log(board);
         navigate('/');
         board.dataId += 1;
-    }
+    }*/
 
     const navigate = useNavigate();
     const returnBack = () => {
@@ -53,19 +55,32 @@ function BoardWrite() {
     return (
         <>
             <div className="container">
-                <label>번호</label>
-                <input type="text" name="id" value={board.dataId} readOnly/>
-                <label>제목</label>
-                <input type="text" name="title" value={board.title} onChange={changeBoard} placeholder="제목"/>
-                <label>작성자</label>
-                <input type="text" name="author" value={board.author} onChange={changeBoard}/>
-                <label>등록일자</label>
-                <input type="text" name="date" value={board.createDate}/>
-                <label>내용</label>
-                <textarea id="subject" name="content" value={board.content} onChange={changeBoard}
-                          style={{height: "300px"}}></textarea>
-
-                <button className='submit' onClick={sendData}>등록</button>
+                <header>{board.boardTypeName}</header>
+                <table>
+                    <tbody>
+                    <tr>
+                        <th>제목</th>
+                        <td>
+                            <input type="text" name="title" value={board.title} onChange={changeBoard}
+                                   placeholder="제목"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>작성자</th>
+                        <td>
+                            <input type="text" name="author" value={board.author} onChange={changeBoard}/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>내용</th>
+                        <td>
+                            <textarea id="subject" name="content" value={board.content} onChange={changeBoard}
+                                      style={{height: "300px"}}></textarea>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button className='submit' onClick={createBoard}>등록</button>
                 <button className='cancel' onClick={returnBack}>취소</button>
             </div>
 

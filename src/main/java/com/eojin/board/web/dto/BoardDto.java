@@ -8,12 +8,12 @@ import java.util.Date;
 @Getter
 @Setter
 public class BoardDto {
-    private String board_id;
-    private String board_type;
+    private String boardId;
+    private String boardType;
     private String title;
     private String content;
-    private String user_id;
-    private String delete_yn;
-    private String create_date;
-    private Date update_date;
+    private String author;
+    private String deleteYn;
+    private Date createDate;
+    private Date updateDate;
 }

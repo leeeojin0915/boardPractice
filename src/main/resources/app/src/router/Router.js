@@ -1,14 +1,14 @@
 import {Route, Routes} from "react-router-dom";
 import BoardList from "../components/BoardList";
-import BoardDetail from "../components/BoardDetail";
-import BoardWrite from "../components/BoardWrite";
+import BoardForm from "../components/BoardForm";
+
 
 function Router(){
     return(
         <Routes>
-            <Route path="/list" element={<BoardList />}></Route>
-            <Route path="/detail/:id" element={<BoardDetail />}></Route>
-            <Route path="/write" element={<BoardWrite />}></Route>
+            <Route path="/" element={<BoardList />}/>
+            <Route path="/board/:boardId" element={<BoardForm />}/>
+            <Route path="/board/create" element={<BoardForm />}/>
         </Routes>
     )
 }
