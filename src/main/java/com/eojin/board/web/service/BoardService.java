@@ -9,5 +9,6 @@ public interface BoardService {
     void createBoard(BoardDto boardDto);
     BoardDto getBoardDetail(String id);
     void updateBoard(BoardDto boardDto);
+    void deleteBoard(List<Integer> boardIdList);
 
 }

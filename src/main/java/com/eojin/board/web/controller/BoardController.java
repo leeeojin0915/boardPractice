@@ -47,4 +47,9 @@ public class BoardController {
         boardService.updateBoard(boardDto);
     }
 
+    @PutMapping("/delete")
+    public void deleteBoard(@RequestBody List<Integer> boardIdList){
+        boardService.deleteBoard(boardIdList);
+    }
+
 }

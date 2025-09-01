@@ -12,5 +12,6 @@ public interface BoardMapper {
     BoardDto selectBoardOne(String boardId);
     void insertBoard(BoardDto boardDto);
     void updateBoard(BoardDto boardDto);
+    void deleteBoard(int boardId);
 
 }

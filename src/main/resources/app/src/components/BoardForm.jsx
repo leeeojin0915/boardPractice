@@ -1,6 +1,9 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import axios from "../config/config";
+import '../css/BoardWrite.css';
+import {CKEditor} from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const BoardForm = () => {
     const {boardId} = useParams();
@@ -19,6 +22,7 @@ const BoardForm = () => {
         author: "",
         createDate: "",
         updateDate: "",
+        boardType:"NOTICE",
         boardTypeName: ""
     });
 
@@ -56,17 +60,18 @@ const BoardForm = () => {
             <table>
                 <tbody>
                 <tr>
-                    <th>번호</th>
+                    {mode ==="view" && <th className="thDetail">번호</th>}
                     <td>
-                        {mode === "view" ? (
+                        {/*{mode === "view" ? (
                             <span>{board.boardId}</span>
                         ) : (
                             <input name="boardId" value={board.boardId ?? ""} onChange={handleChange} readOnly/>
-                        )}
+                        )}*/}
+                        {mode==="view" && <span>{board.boardId}</span>}
                     </td>
                 </tr>
                 <tr>
-                    <th>제목</th>
+                    <th className="thDetail">제목</th>
                     <td>
                         {mode === "view" ? (
                             <span>{board.title}</span>
@@ -76,26 +81,33 @@ const BoardForm = () => {
                     </td>
                 </tr>
                 <tr>
-                    <th>작성자</th>
+                    <th className="thDetail">작성자</th>
                     <td>
                         {mode === "view" ? (
                             <span>{board.author}</span>
                         ) : (
                             <input name="author" value={board.author ?? ""} onChange={handleChange}/>
                         )}
+                        {/*<span>{board.author}</span>*/}
                     </td>
                 </tr>
                 <tr>
-                    <th>내용</th>
+                    <th className="thDetail">내용</th>
                     <td>
                         {mode === "view" ? (
-                            <div style={{whiteSpace: "pre-line"}}>{board.content}</div>
+                            <div style={{whiteSpace: "pre-line"}} dangerouslySetInnerHTML={{__html:board.content}}/>
                         ) : (
-                            <textarea
+                            <CKEditor editor={ClassicEditor}
                                 name="content"
-                                value={board.content ?? ""}
-                                onChange={handleChange}
-                                style={{height: "300px", width: "100%"}}
+                                data={board.content}
+                                onChange={(event, editor) =>{
+                                    const data = editor.getData();
+                                    setBoard((prev) =>({
+                                        ...prev,
+                                        content:data
+                                    }));
+                                }}
+                                style={{height: "600px", width: "100%"}}
                             />
                         )}
                     </td>

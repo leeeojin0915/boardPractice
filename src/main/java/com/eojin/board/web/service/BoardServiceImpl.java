@@ -34,4 +34,11 @@ public class BoardServiceImpl implements BoardService{
     public void updateBoard(BoardDto boardDto) {
         boardMapper.updateBoard(boardDto);
     }
+
+    @Override
+    public void deleteBoard(List<Integer> boardIdList) {
+        for (Integer integer : boardIdList) {
+            boardMapper.deleteBoard(integer);
+        }
+    }
 }
